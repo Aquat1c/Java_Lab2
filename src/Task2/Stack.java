@@ -1,6 +1,7 @@
 package Task2;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class Stack implements Iterable<Node> {
     private Node head;
@@ -57,8 +58,16 @@ public class Stack implements Iterable<Node> {
         }
 
         public Node next() {
+            if (!hasNext()) {
             return current;
+            }
+
+            else {
+                current = current.getNext();
+            }
+            return  current;
         }
+
     }
 
     public Iterator<Node> iterator() {
