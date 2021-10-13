@@ -1,7 +1,6 @@
 package Task2;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 public class Stack implements Iterable<Node> {
     private Node head;
@@ -19,7 +18,10 @@ public class Stack implements Iterable<Node> {
             throw new Exception("pop from empty stack!");
         }
         final int result = head.getData();
-        head = head.getNext();
+        if (!iterator().hasNext()){
+            head = head.getNext();
+
+        }
         return result;
     }
 
@@ -36,13 +38,13 @@ public class Stack implements Iterable<Node> {
     @Override
     public String toString() {
         Node currentHead = head;
-        String result = "[ ";
+        StringBuilder result = new StringBuilder("[ ");
         while (currentHead != null) {
-            result += currentHead.getData() + ", ";
+            result.append(currentHead.getData()).append(", ");
             currentHead = currentHead.getNext();
         }
-        result += "]";
-        return result;
+        result.append("]");
+        return result.toString();
     }
 
     class NodeIterator implements Iterator<Node> {
@@ -58,14 +60,8 @@ public class Stack implements Iterable<Node> {
         }
 
         public Node next() {
-            if (!hasNext()) {
-            return current;
-            }
 
-            else {
-                current = current.getNext();
-            }
-            return  current;
+            return  current.getNext();
         }
 
     }
