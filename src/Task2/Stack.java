@@ -31,6 +31,7 @@ public class Stack implements Iterable<Node> {
         }
     }
 
+
     public boolean isEmpty() {
         return (this.head == null);
     }
@@ -48,20 +49,14 @@ public class Stack implements Iterable<Node> {
     }
 
     class NodeIterator implements Iterator<Node> {
-        private Node current;
+        private Node current = head;
 
         public boolean hasNext() {
-            if (current == null) {
-                current = head;
-            } else {
-                current = current.getNext();
-            }
-            return (current != null);
+            return current.getNext() != null;
         }
 
         public Node next() {
-
-            return  current.getNext();
+            return  this.current.getNext();
         }
 
     }
